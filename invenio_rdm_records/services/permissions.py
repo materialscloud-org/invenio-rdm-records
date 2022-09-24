@@ -53,15 +53,15 @@ class RDMRecordPermissionPolicy(RecordPermissionPolicy):
     #  Records
     #
     # Allow searching of records
-    can_search = can_all
+    can_search = can_authenticated
 
     # Allow reading metadata of a record
     can_read = [
-        IfRestricted('record', then_=can_view, else_=can_all),
+        IfRestricted('record', then_=can_view, else_=can_authenticated),
     ]
     # Allow reading the files of a record
     can_read_files = [
-        IfRestricted('files', then_=can_view, else_=can_all),
+        IfRestricted('files', then_=can_view, else_=can_authenticated),
     ]
     # Allow submitting new record
     can_create = can_authenticated
